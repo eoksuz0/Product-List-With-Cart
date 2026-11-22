@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product List with Cart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <main class="shop">
+    <section class="products" aria-labelledby="products-title">
+      <h1 class="products__title" id="products-title">Desserts</h1>
+      <ul class="products__list" id="product-list"></ul>
+    </section>
+
+    <aside class="cart" aria-labelledby="cart-title">
+      <h2 class="cart__title" id="cart-title" tabindex="-1">Your Cart (<span id="cart-count">0</span>)</h2>
+
+      <div class="cart__empty" id="cart-empty">
+        <img src="assets/images/illustration-empty-cart.svg" alt="">
+        <p>Your added items will appear here</p>
+      </div>
+
+      <div class="hidden" id="cart-content">
+        <ul class="cart__list" id="cart-list"></ul>
+
+        <p class="total">
+          Order Total
+          <strong class="total__price" id="cart-total">$0.00</strong>
+        </p>
+
+        <p class="cart__note">
+          <img src="assets/images/icon-carbon-neutral.svg" alt="">
+          <span>This is a <strong>carbon-neutral</strong> delivery</span>
+        </p>
+
+        <button class="button" id="confirm-button" type="button">Confirm Order</button>
+      </div>
+    </aside>
+  </main>
+
+  <dialog class="modal" id="order-modal" aria-labelledby="modal-title">
+    <form method="dialog">
+      <img src="assets/images/icon-order-confirmed.svg" alt="">
+      <h2 class="modal__title" id="modal-title">Order Confirmed</h2>
+      <p class="modal__text">We hope you enjoy your food!</p>
+
+      <div class="modal__summary">
+        <ul class="modal__list" id="modal-list"></ul>
+        <p class="total total--summary">
+          Order Total
+          <strong class="total__price" id="modal-total">$0.00</strong>
+        </p>
+      </div>
+
+      <button class="button" value="new">Start New Order</button>
+    </form>
+  </dialog>
+
+  <template id="product-template">
+    <li class="product">
+      <div class="product__media">
+        <picture>
+          <source class="product__source-desktop" media="(min-width: 1100px)">
+          <source class="product__source-tablet" media="(min-width: 600px)">
+          <img class="product__image" alt="">
+        </picture>
+
+        <button class="add-button" type="button">
+          <img src="assets/images/icon-add-to-cart.svg" alt="">
+          Add to Cart
+        </button>
+
+        <div class="quantity hidden">
+          <button class="quantity__button quantity__button--decrease" type="button">
+            <svg width="10" height="2" viewBox="0 0 10 2" aria-hidden="true"><path fill="currentColor" d="M0 0H10V1.25H0V0Z"/></svg>
+          </button>
+          <span class="quantity__value">1</span>
+          <button class="quantity__button quantity__button--increase" type="button">
+            <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path fill="currentColor" d="M10 4.375H5.625V0H4.375V4.375H0V5.625H4.375V10H5.625V5.625H10V4.375Z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="product__category"></p>
+      <h3 class="product__name"></h3>
+      <p class="product__price"></p>
+    </li>
+  </template>
+
+  <template id="cart-item-template">
+    <li class="cart-item">
+      <div>
+        <p class="cart-item__name"></p>
+        <p class="cart-item__details">
+          <span class="cart-item__quantity"></span>
+          <span class="cart-item__price"></span>
+          <span class="cart-item__total"></span>
+        </p>
+      </div>
+      <button class="remove-button" type="button">
+        <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path fill="currentColor" d="M8.375 9.375L5 6L1.625 9.375L0.625 8.375L4 5L0.625 1.625L1.625 0.625L5 4L8.375 0.625L9.375 1.625L6 5L9.375 8.375L8.375 9.375Z"/></svg>
+      </button>
+    </li>
+  </template>
+
+  <template id="modal-item-template">
+    <li class="modal-item">
+      <img class="modal-item__image" alt="">
+      <div class="modal-item__info">
+        <p class="cart-item__name modal-item__name"></p>
+        <p class="cart-item__details">
+          <span class="cart-item__quantity"></span>
+          <span class="cart-item__price"></span>
+        </p>
+      </div>
+      <p class="modal-item__total"></p>
+    </li>
+  </template>
+</body>
+</html>
